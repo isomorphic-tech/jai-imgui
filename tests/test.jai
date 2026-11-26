@@ -1,6 +1,9 @@
+// FreeType font rendering. Needs jai-freetype in tests/modules/Freetype (see README).
+USE_FREETYPE :: false;
+
 #import "sdl3";
 #import "Basic";
-#import "freetype";
+#if USE_FREETYPE  #import "Freetype";
 
 // Import the imgui module (usually just '#import "imgui')
 #import,file "../module.jai";
@@ -10,7 +13,7 @@
 // gets access to the types it needs.
 #load "../backends/sdl3_gpu3.jai";
 
-#load "../misc/freetype/freetype.jai";
+#if USE_FREETYPE  #load "../misc/freetype/freetype.jai";
 
 // Calls SDL_GetError then SDL_ClearError
 //
@@ -33,9 +36,6 @@ ok_or_exit :: inline (success: bool, err_msg_format: string, args: ..Any, flags 
 DEBUG :: true;
 
 main :: () {
-
-    // Keep freetype from being removed by the compiler
-    FT_Error_String(0);
 
     // Setup window and gpu using the SDL3_GPU3 backend.
     // This is based on the 'example_sdl3_sdlgpu3' Dear ImGui example, which you can find on their repo.
@@ -66,7 +66,7 @@ main :: () {
     io := GetIO();
 
     // Enable freetype rendering
-    io.Fonts.SetFontLoader(io.Fonts, FreeType.GetFontLoader());
+    #if USE_FREETYPE  io.Fonts.SetFontLoader(io.Fonts, FreeType.GetFontLoader());
 
     // Other IO setup
     io.ConfigFlags_ |= .DockingEnable | .ViewportsEnable | .DpiEnableScaleViewports | .DpiEnableScaleFonts | .NavEnableKeyboard | .NavEnableGamepad;

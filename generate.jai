@@ -4,7 +4,7 @@
 // We don’t ship the Dear ImGui source with the compiler. Download a Dear ImGui release and update this path if you want to re-generate the bindings.
 IMGUI_PATH :: "src/imgui"; // v1.92.7-docking
 SDL3_INCLUDE_PATH :: "src/include"; // Used for SDL v3.2.14
-FREETYPE_INCLUDE_PATH :: "src/include/freetype-2.12.1";
+FREETYPE_INCLUDE_PATH :: "src/include/freetype-2.15.0";
 
 DECLARATIONS_TO_OMIT :: string.[
     // We have custom declarations for these in module.jai:

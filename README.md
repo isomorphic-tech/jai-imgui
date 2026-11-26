@@ -8,7 +8,7 @@ Bindings have the following done:
 
 - Dear ImGui is built as static and dynamic library from source (`jai generate.jai - -compile`) and bindings are generated
 - Official SDL3 GPU backend is built as a static library from source (`jai generate.jai - -backend_sdl3_gpu3`) and bindings are generated.
-- Official FreeType support is added as a static library compiled from source (`jai generated.jai - -freetype`) and bindings are generated.
+- Official FreeType support is added as a static library compiled from source (`jai generate.jai - -freetype`) against the FreeType 2.15.0 headers in `src/include/freetype-2.15.0`, and bindings are generated.
 - Dear ImGui is built using `#define IMGUI_USE_WCHAR32`, which converts `ImWchar` from 16->32 bits and allows you to use any unicode characters above 0xFFFF (e.g., many emojis).
 - `ImGui` prefix removed (e.g., `ImGuiStyle` becomes `Style`)
 
@@ -19,6 +19,8 @@ The SDL3 headers we are using to build the SDL3 backend are `SDL v3.2.14`. You c
 ## Usage
 
 Check out `tests/test.jai` for a complete working example that uses the `sdl3_gpu3` backend and FreeType. Compile using `jai tests/test.jai` and then run with `./tests/test.exe`.
+
+FreeType is off by default. To use it, put [jai-freetype](https://github.com/isomorphic-tech/jai-freetype) in `tests/modules/Freetype` and set `USE_FREETYPE :: true` in `tests/test.jai`.
 
 The Dear ImGui bindings are available for Windows x64, MacOS x64/ARM64, and Linux x64.
 

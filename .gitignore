@@ -44,3 +44,4 @@ config.dev.json
 imgui.ini
 Makefile
 *.dSYM
+tests/modules/Freetype/
